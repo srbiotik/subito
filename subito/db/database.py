@@ -11,7 +11,7 @@ class Database:
         """ Accepts any number of strings based on which to create or connect databases """
         self.dbs = {arg: TinyDB(f"{arg}.json") for arg in args}
         self.logger = logging.getLogger("__main__")
-        self.logger.setLevel(getenv("LEVEL"))
+        self.logger.setLevel(getenv("LOG_LEVEL"))
 
     def get_id(self, document):
         """ Returns document ID """

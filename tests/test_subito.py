@@ -8,10 +8,10 @@ app = Subito(getenv("GRAPHQL_SERVER"))
 
 
 def test_version():
-    assert __version__ == "0.1.0"
+    assert __version__ == "0.1.1"
 
 
 @pytest.mark.asyncio
 @app.subscribe("subscription { stationFeedback }")
-async def test_subscription():
-    print("Subscribed as fuck!")
+async def test_subscription(message):
+    print("Subscribed!")

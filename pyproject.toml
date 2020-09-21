@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "subito"
 version = "0.1.0"
-description = "A libarary which facilitates quickly getting up and running tasks in reaction to one or more GraphQL subscriptions."
+description = "Quickly create stateless microservices based on GraphQL subscription messages."
 authors = ["Milos Grujic <srbiotik@gmail.com>"]
 license = "MIT"
 
