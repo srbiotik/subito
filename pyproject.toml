@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "subito"
-version = "0.1.0"
+version = "0.1.2"
 description = "Quickly create stateless microservices based on GraphQL subscription messages."
 authors = ["Milos Grujic <srbiotik@gmail.com>"]
+repository = "https://github.com/srbiotik/subito"
 license = "MIT"
 
 [tool.poetry.dependencies]
