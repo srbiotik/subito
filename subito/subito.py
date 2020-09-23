@@ -1,9 +1,9 @@
 from asyncio import gather
-from types import FunctionType
 
 from gql import Client, WebsocketsTransport
 
 from subito.operations.subscription import Subscription
+from subito.operations.operation import Operation
 
 
 class Subito:
@@ -20,19 +20,20 @@ class Subito:
     async def run(self):
         async with Client(**self.options) as session:
             Subito.session = session
-            await gather(*(s.dequeue(session) for s in Subito.subscriptions))
-            await gather(*(s.subscribe(session) for s in Subito.subscriptions))
+            await gather(*(s.consume(session) for s in Subito.subscriptions))
 
-    def subscribe(self, document: str):
+    @staticmethod
+    def subscribe(document: str):
         Subito.subscriptions.append(Subscription(document))
 
         def inner(handler):
             subscription = Subito.subscriptions[-1]
             subscription.handler = handler
 
-            async def wrapper(self, *args, **kwargs):
-                return handler
-
-            return wrapper
-
         return inner
+
+    @staticmethod
+    async def execute(document: str, variables: dict = {}) -> dict:
+        operation = Operation(document, variables)
+        result = await operation.execute(Subito.session)
+        return result

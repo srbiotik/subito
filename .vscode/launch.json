@@ -8,8 +8,9 @@
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/main.py",
-            "console": "integratedTerminal"
+            "program": "${workspaceFolder}/example.py",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
